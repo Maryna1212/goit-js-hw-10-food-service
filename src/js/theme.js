@@ -5,6 +5,9 @@ const refs = {
 };
 
 refs.switchInput.addEventListener('change', onSwitchInputChange);
+let savedTheme = localStorage.getItem('theme');
+
+window.addEventListener('load', currentTheme);
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -29,4 +32,15 @@ function enableDarkTheme() {
 function enableLightTheme() {
     toggleTheme(Theme.LIGHT, Theme.DARK);
     refs.switchInput.checked = false;
+}
+
+function currentTheme() {
+    if (savedTheme === Theme.LIGHT || savedTheme === null) {
+        enableLightTheme();
+        return;
+    }
+    if (savedTheme === Theme.DARK) {
+        enableDarkTheme();
+        return;
+    }
 }

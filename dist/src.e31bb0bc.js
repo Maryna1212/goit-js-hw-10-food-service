@@ -124,6 +124,8 @@ var refs = {
   ulMenu: document.querySelector('.js-menu')
 };
 refs.switchInput.addEventListener('change', onSwitchInputChange);
+var savedTheme = localStorage.getItem('theme');
+window.addEventListener('load', currentTheme);
 var Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme'
@@ -147,6 +149,18 @@ function enableDarkTheme() {
 function enableLightTheme() {
   toggleTheme(Theme.LIGHT, Theme.DARK);
   refs.switchInput.checked = false;
+}
+
+function currentTheme() {
+  if (savedTheme === Theme.LIGHT || savedTheme === null) {
+    enableLightTheme();
+    return;
+  }
+
+  if (savedTheme === Theme.DARK) {
+    enableDarkTheme();
+    return;
+  }
 }
 },{}],"../node_modules/handlebars/dist/handlebars.runtime.js":[function(require,module,exports) {
 var define;
